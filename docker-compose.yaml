@@ -1,0 +1,32 @@
+version: '3'
+services:
+  application:
+    container_name: symfony
+    build: ./docker/application
+    ports:
+      - '8000:8000'
+      - '27017:27017'
+    volumes:
+      - './app:/App'
+  auth:
+    container_name: auth
+    build: ./docker/application
+    volumes:
+      - './auth:/App'
+  # database:
+  #   container_name: mongodb
+  #   build: ./docker/database
+  #   restart: always
+  #   ports:
+  #     - '27018:27017'
+  #   volumes:
+  #     - './docker/database/data:/data/db'
+  # server:
+  #   container_name: nginx
+  #   build: ./docker/nginx
+  #   tty: true
+  #   volumes:
+  #     - './docker/nginx/configuration:/etc/nginx/conf.d'
+  #     - './app:/App'
+  #   ports:
+  #     - '8080:80'
